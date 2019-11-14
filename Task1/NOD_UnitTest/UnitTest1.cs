@@ -11,9 +11,20 @@ namespace NOD_UnitTest
         public void TestMethod1()
         {
             int a = 152, b = 57;
-            int nodactual = NODMethods.Euclidean(a, b);
+            double time = 0;
+            int nodE = NODMethods.Euclidean(a, b, ref time);     
+            int nodS = NODMethods.Stein(a, b, ref time);
             int nod = 19;
-            Assert.AreEqual(nod, nodactual);
+            Assert.AreEqual(nod, nodE, nodS);
+        }
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+            int a = 152, b = 57, c = 76;
+            int nodE = NODMethods.Euclidean(a, b, c);
+            int nod = 19;
+            Assert.AreEqual(nod, nodE);
         }
     }
 }
