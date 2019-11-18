@@ -7,8 +7,8 @@
     <ProjectGuid>{69B3747D-2E57-4232-B26D-2221A9C9F971}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VectorLib</RootNamespace>
-    <AssemblyName>VectorLib</AssemblyName>
+    <RootNamespace>VPLib</RootNamespace>
+    <AssemblyName>VPLib</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,7 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="VectorLib.cs" />
+    <Compile Include="Polynom.cs" />
+    <Compile Include="Vector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

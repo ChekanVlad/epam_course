@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VectorLib
+namespace VPLib
 {
     public class Vector
     {
-        private const double tolerance = 0.001;
+        private const double EPS = 0.001;
         private double x;
         private double y;
         private double z;
-
         public Vector(double x, double y, double z)
         {
             this.x = x;
@@ -66,6 +65,17 @@ namespace VectorLib
             multVec[1] = vector1.z * vector2.x - vector1.x * vector2.z;
             multVec[2] = vector1.x * vector2.y - vector1.y * vector2.x;
             return new Vector(multVec[0], multVec[1], multVec[2]);
+        }
+
+        public static bool operator ==(Vector vector1, Vector vector2)
+        {
+            return Math.Abs(vector1.x - vector2.x) < EPS && Math.Abs(vector1.y - vector2.y) < EPS && 
+               Math.Abs(vector1.z - vector2.z) < EPS;
+        }
+
+        public static bool operator !=(Vector vector1, Vector vector2)
+        {
+            return !(vector1 == vector2);
         }
     }
 }

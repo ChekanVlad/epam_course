@@ -56,9 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VectorLib\VectorLib.csproj">
+    <ProjectReference Include="..\VectorLib\VPLib.csproj">
       <Project>{69b3747d-2e57-4232-b26d-2221a9c9f971}</Project>
-      <Name>VectorLib</Name>
+      <Name>VPLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
