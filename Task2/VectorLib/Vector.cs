@@ -58,7 +58,7 @@ namespace VPLib
         /// <param name="vector1"></param>
         /// <param name="vector2"></param>
         /// <returns></returns>
-        public static Vector operator /(Vector vector1, Vector vector2)
+        public static Vector operator ^(Vector vector1, Vector vector2)
         {
             double[] multVec = new double[3];
             multVec[0] = vector1.y * vector2.z - vector1.z * vector2.y;
@@ -67,12 +67,24 @@ namespace VPLib
             return new Vector(multVec[0], multVec[1], multVec[2]);
         }
 
+        /// <summary>
+        /// Сравнение векторов.
+        /// </summary>
+        /// <param name="vector1"></param>
+        /// <param name="vector2"></param>
+        /// <returns>Возвращает true при равенстве векторов.</returns>
         public static bool operator ==(Vector vector1, Vector vector2)
         {
-            return Math.Abs(vector1.x - vector2.x) < EPS && Math.Abs(vector1.y - vector2.y) < EPS && 
-               Math.Abs(vector1.z - vector2.z) < EPS;
+            return Math.Abs(vector1.x - vector2.x) <= EPS && Math.Abs(vector1.y - vector2.y) <= EPS && 
+               Math.Abs(vector1.z - vector2.z) <= EPS;
         }
 
+        /// <summary>
+        /// Сравнение векторов.
+        /// </summary>
+        /// <param name="vector1"></param>
+        /// <param name="vector2"></param>
+        /// <returns>Возвращает true при неравенстве векторов.</returns>
         public static bool operator !=(Vector vector1, Vector vector2)
         {
             return !(vector1 == vector2);

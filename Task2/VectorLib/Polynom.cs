@@ -8,6 +8,7 @@ namespace VPLib
 {
     public class Polynom
     {
+        private const double EPS = 0.001;
         private double[] coff;
 
         public Polynom(double[] coff)
@@ -84,6 +85,36 @@ namespace VPLib
                 }
             }
             return new Polynom(coff);
+        }
+
+        /// <summary>
+        /// Сравнение полиномов.
+        /// </summary>
+        /// <param name="polynom1"></param>
+        /// <param name="polynom2"></param>
+        /// <returns>Возвращает true при равенстве полиномов.</returns>
+        public static bool operator ==(Polynom polynom1, Polynom polynom2)
+        {
+            if (polynom1.coff.Length != polynom1.coff.Length)
+                return false;
+
+            for(int i = 0; i < polynom1.coff.Length; i++)
+            {
+                if (Math.Abs(polynom1.coff[i] - polynom1.coff[i]) > EPS)
+                    return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Сравнение полиномов.
+        /// </summary>
+        /// <param name="polynom1"></param>
+        /// <param name="polynom2"></param>
+        /// <returns>Возвращает true при неравенстве полиномов.</returns>
+        public static bool operator !=(Polynom polynom1,Polynom polynom2)
+        {
+            return !(polynom1 == polynom2);
         }
     }
 }
