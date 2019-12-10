@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ExceptionsLib.Exceptions;
 
 namespace Figures.Paper
 {
@@ -23,7 +24,7 @@ namespace Figures.Paper
         {
             if (radius <= 0)
             {
-                throw new Exception();//неверные парамерты
+                throw new InvalidParamException();//неверные парамерты
             }
             this.radius = radius;
             colorIndex = 0;
@@ -38,16 +39,16 @@ namespace Figures.Paper
         {
             if (figure.GetMaterial() != "Paper")
             {
-                throw new Exception();//не совпадает материал
+                throw new WrongMaterialException();//не совпадает материал
             }
             if (radius <= 0)
             {
-                throw new Exception();//неверные параметры
+                throw new InvalidParamException();//неверные параметры
             }
             this.radius = radius;
             if (figure.Square < Square)
             {
-                throw new Exception();//невозможно вырезать
+                throw new CuttingException();//невозможно вырезать
             }
             colorIndex = ((PaperFigures)figure).GetColor();
         }
@@ -91,13 +92,13 @@ namespace Figures.Paper
         /// <param name="color"></param>
         public void Paint(Color color)
         {
-            if (IsPainted())
+            if (!IsPainted())
             {
                 colorIndex = color;
             }
             else
             {
-                throw new Exception();//Уже покрашено
+                throw new PaintException();//Уже покрашено
             }
         }
 

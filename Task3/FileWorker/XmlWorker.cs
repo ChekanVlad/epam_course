@@ -80,7 +80,7 @@ namespace FileWorker
         /// </summary>
         /// <param name="figures">Figures List</param>
         /// <param name="filePath">File Path</param>
-        public static void WriteToXML(List<IGFigures> figures, string filePath)
+        public static void WriteToXml(List<IGFigures> figures, string filePath)
         {
             XDocument document = new XDocument();
             XElement elements = new XElement("figures");

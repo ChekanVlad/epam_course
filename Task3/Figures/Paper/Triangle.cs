@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ExceptionsLib.Exceptions;
 
 namespace Figures.Paper
 {
@@ -25,7 +26,7 @@ namespace Figures.Paper
         {
             if (!IsConsist(a, b, c))
             {
-                throw new Exception();
+                throw new InvalidParamException();
             }
             sides = new int[3] { a, b, c };
             colorIndex = 0;
@@ -42,16 +43,16 @@ namespace Figures.Paper
         {
             if (figure.GetMaterial() != "Paper")
             {
-                throw new Exception();
+                throw new WrongMaterialException();
             }
             if (!IsConsist(a, b, c))
             {
-                throw new Exception();
+                throw new InvalidParamException();
             }
             sides = new int[3] { a, b, c };
             if (figure.Square < Square)
             {
-                throw new Exception();
+                throw new CuttingException();
             }
             colorIndex = ((PaperFigures)figure).GetColor();
         }
@@ -119,15 +120,19 @@ namespace Figures.Paper
             return (double)(Perimetr) / 2;
         }
 
+        /// <summary>
+        /// Paint figure to concrect color
+        /// </summary>
+        /// <param name="color"></param>
         public void Paint(Color color)
         {
-            if (IsPainted())
+            if (!IsPainted())
             {
                 colorIndex = color;
             }
             else
             {
-                throw new Exception();
+                throw new PaintException();
             }
         }
 

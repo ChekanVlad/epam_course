@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ExceptionsLib.Exceptions;
 
 namespace Figures.Plenka
 {
@@ -24,7 +25,7 @@ namespace Figures.Plenka
         {
             if (!IsConsist(a, b, c))
             {
-                throw new Exception();
+                throw new InvalidParamException();
             }
             sides = new int[3] { a, b, c };
         }
@@ -40,16 +41,16 @@ namespace Figures.Plenka
         {
             if (figure.GetMaterial() != "Plenka")
             {
-                throw new Exception();
+                throw new WrongMaterialException();
             }
             if (!IsConsist(a, b, c))
             {
-                throw new Exception();
+                throw new InvalidParamException();
             }
             sides = new int[3] { a, b, c };
             if (figure.Square < Square)
             {
-                throw new Exception();
+                throw new CuttingException();
             }
         }
 

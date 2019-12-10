@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CDB936DF-D7BE-4C8D-89C8-A568C3EB5404}</ProjectGuid>
+    <ProjectGuid>{677B0078-938A-4404-AF0B-A0D12EA86EEA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Figures</RootNamespace>
-    <AssemblyName>Figures</AssemblyName>
+    <RootNamespace>Exceprtions</RootNamespace>
+    <AssemblyName>Exceprtions</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Figures.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Exceprtions.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,24 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Paper\Circle.cs" />
-    <Compile Include="Paper\Rectangle.cs" />
-    <Compile Include="Paper\Triangle.cs" />
-    <Compile Include="Plenka\Circle.cs" />
-    <Compile Include="Plenka\Rectangle.cs" />
-    <Compile Include="Plenka\Triangle.cs" />
+    <Compile Include="Exceptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\Exceprtions\ExceptionsLib.csproj">
-      <Project>{677B0078-938A-4404-AF0B-A0D12EA86EEA}</Project>
-      <Name>ExceptionsLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
-      <Project>{E8246487-32D2-4B27-8F96-814A191F5BB3}</Project>
-      <Name>Interfaces</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

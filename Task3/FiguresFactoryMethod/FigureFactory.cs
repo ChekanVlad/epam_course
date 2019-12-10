@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ExceptionsLib.Exceptions;
 using Circle1 = Figures.Paper.Circle;
 using Circle2 = Figures.Plenka.Circle;
 using Rectangle1 = Figures.Paper.Rectangle;
@@ -66,7 +67,7 @@ namespace FiguresFactoryMethod
                     createdFigure = new Triangle2(values[0], values[1], values[2]);
                     break;
                 default:
-                    throw new Exception();//неверные параметры
+                    throw new InvalidParamException();//неверные параметры
             }
             return createdFigure;
         }
@@ -96,7 +97,7 @@ namespace FiguresFactoryMethod
                     else createdFigure = new Triangle2(values[0], values[1], values[2], sourceFigure);
                     break;
                 default:
-                    throw new Exception();//неверные параметры
+                    throw new InvalidParamException();//неверные параметры
             }
             return createdFigure;
         }

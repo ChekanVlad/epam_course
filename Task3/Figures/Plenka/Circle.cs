@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ExceptionsLib.Exceptions;
 
 namespace Figures.Plenka
 {
@@ -21,7 +22,7 @@ namespace Figures.Plenka
         {
             if (radius <= 0)
             {
-                throw new Exception();
+                throw new InvalidParamException();
             }
             this.radius = radius;
         }
@@ -35,16 +36,16 @@ namespace Figures.Plenka
         {
             if (figure.GetMaterial() != "Plenka")
             {
-                throw new Exception();
+                throw new WrongMaterialException();
             }
             if (radius <= 0)
             {
-                throw new Exception();
+                throw new InvalidParamException();
             }
             this.radius = radius;
             if (figure.Square < Square)
             {
-                throw new Exception();
+                throw new CuttingException();
             }
         }
 

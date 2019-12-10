@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Exceprtions\ExceptionsLib.csproj">
+      <Project>{677B0078-938A-4404-AF0B-A0D12EA86EEA}</Project>
+      <Name>ExceptionsLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Figures\Figures.csproj">
       <Project>{cdb936df-d7be-4c8d-89c8-a568c3eb5404}</Project>
       <Name>Figures</Name>
