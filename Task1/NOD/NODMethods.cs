@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace NOD
 {
+    /// <summary>
+    /// Methods for NOD
+    /// </summary>
     public class NODMethods
     {
         /// <summary>
-        /// Алгоритм Евклида
+        /// Euclidean
         /// </summary>
         /// <param name="a"></param>
-        /// <param name="b"></paramх
+        /// <param name="b"></param>
         /// <returns></returns>
         public static int Euclidean(int a, int b, ref double time)
         {
@@ -33,7 +36,7 @@ namespace NOD
         }
 
         /// <summary>
-        /// Алгоритм Евклида (для 3-х)
+        /// Euclidean (3 el)
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -48,7 +51,7 @@ namespace NOD
         }
 
         /// <summary>
-        /// Алгоритм Евклида (для 4-х)
+        /// Euclidean (4 el)
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -65,7 +68,7 @@ namespace NOD
         }
 
         /// <summary>
-        /// Алгоритм Евклида (для 5-х)
+        /// Euclidean (5 el)
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -82,7 +85,7 @@ namespace NOD
             return Euclidean(e, Euclidean(a, b, c, d, ref time), ref time);
         }
         /// <summary>
-        /// Алгоритм Стейна
+        /// Stein
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -122,27 +125,35 @@ namespace NOD
             }       
         }
 
-
+        /// <summary>
+        /// Get data for gist
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <param name="d"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public static double[] gistData(int a, int b, int c, int d, int e)
         {
             double[] timesData = new double[5];
-            //Евклид (2)
+            //
             double time = 0;
             int nodE2 = Euclidean(a, b, ref time);
             timesData[0] = time;
-            //Евклид (3)
+            //
             time = 0;
             int nodE3 = Euclidean(a, b, c, ref time);
             timesData[1] = time;
-            //Евклид (4)
+            //
             time = 0;
             int nodE4 = Euclidean(a, b, c, d, ref time);
             timesData[2] = time;
-            //Евклид (5)
+            //
             time = 0;
             int nodE5 = Euclidean(a, b, c, d, e, ref time);
             timesData[3] = time;
-            //Стейн
+            //
             time = 0;
             int nodS = Stein(a,b, ref time);
             timesData[4] = time;

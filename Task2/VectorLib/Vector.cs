@@ -20,7 +20,7 @@ namespace VPLib
         }
 
         /// <summary>
-        /// Сложение веторов
+        /// Vectors sum
         /// </summary>
         /// <param name="vector1"></param>
         /// <param name="vector2"></param>
@@ -31,7 +31,7 @@ namespace VPLib
         }
 
         /// <summary>
-        /// Разность векторов
+        /// Vectors sub
         /// </summary>
         /// <param name="vector1"></param>
         /// <param name="vector2"></param>
@@ -42,7 +42,7 @@ namespace VPLib
         }
 
         /// <summary>
-        /// Произведение векторов (скалярное)
+        /// Vectors mult (scalar)
         /// </summary>
         /// <param name="vector1"></param>
         /// <param name="vector2"></param>
@@ -53,7 +53,7 @@ namespace VPLib
         }
 
         /// <summary>
-        /// Произведение векторов (Векторное)
+        /// Vectors mult (vector)
         /// </summary>
         /// <param name="vector1"></param>
         /// <param name="vector2"></param>
@@ -68,11 +68,11 @@ namespace VPLib
         }
 
         /// <summary>
-        /// Сравнение векторов.
+        /// == for vectors
         /// </summary>
         /// <param name="vector1"></param>
         /// <param name="vector2"></param>
-        /// <returns>Возвращает true при равенстве векторов.</returns>
+        /// <returns></returns>
         public static bool operator ==(Vector vector1, Vector vector2)
         {
             return Math.Abs(vector1.x - vector2.x) <= EPS && Math.Abs(vector1.y - vector2.y) <= EPS && 
@@ -80,11 +80,11 @@ namespace VPLib
         }
 
         /// <summary>
-        /// Сравнение векторов.
+        /// != for vectors
         /// </summary>
         /// <param name="vector1"></param>
         /// <param name="vector2"></param>
-        /// <returns>Возвращает true при неравенстве векторов.</returns>
+        /// <returns></returns>
         public static bool operator !=(Vector vector1, Vector vector2)
         {
             return !(vector1 == vector2);

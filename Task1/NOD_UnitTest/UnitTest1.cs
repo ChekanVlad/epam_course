@@ -7,6 +7,9 @@ namespace NOD_UnitTest
     [TestClass]
     public class UnitTests
     {
+        /// <summary>
+        /// Unit Test (Euclidean and Stein methods)
+        /// </summary>
         [TestMethod]
         public void TestMethod1()
         {
@@ -18,6 +21,9 @@ namespace NOD_UnitTest
             Assert.AreEqual(nod, nodE, nodS);
         }
 
+        /// <summary>
+        /// Unit Test (Euclidean for 3 el)
+        /// </summary>
         [TestMethod]
         public void TestMethod2()
         {
@@ -28,6 +34,9 @@ namespace NOD_UnitTest
             Assert.AreEqual(nod, nodE);
         }
 
+        /// <summary>
+        /// Unit Test (Euclidean for 4 el)
+        /// </summary>
         [TestMethod]
         public void TestMethod3()
         {
@@ -38,6 +47,9 @@ namespace NOD_UnitTest
             Assert.AreEqual(nod, nodE);
         }
 
+        /// <summary>
+        /// Unit Test (Euclidean for 5 el)
+        /// </summary>
         [TestMethod]
         public void TestMethod4()
         {

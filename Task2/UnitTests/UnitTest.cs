@@ -8,7 +8,9 @@ namespace UnitTests
     [TestClass]
     public class UnitTest
     {
-
+        /// <summary>
+        /// Unit Test (Vectors)
+        /// </summary>
         [TestMethod]
         public void VectorOperations()
         {
@@ -18,12 +20,19 @@ namespace UnitTests
             Vector sub = new Vector(5.8, -22.3, 72.9);
             Vector multVec = new Vector(-359.03, 395.05, 149.41);
             double multScalar = 1516.65;
+            //Sum
             Assert.IsTrue((v1 + v2) == sum);
+            //Substraction
             Assert.IsTrue((v1 - v2) == sub);
+            //Mult (Vec)
             Assert.IsTrue((v1 ^ v2) == multVec);
+            //Mult (Scalar)
             Assert.AreEqual(v1 * v2, multScalar);
         }
 
+        /// <summary>
+        /// Unit Test (Polynom)
+        /// </summary>
         [TestMethod]
         public void PolynomOperations()
         {
@@ -32,8 +41,11 @@ namespace UnitTests
             Polynom sum = new Polynom(new double[] { -7.3, 16.1, 0, 0, 25.3, 3 });
             Polynom sub = new Polynom(new double[] { 7.3, 14.3, 1.3, -12, -3 });
             Polynom mult = new Polynom(new double[] { 0, -18, 3.9, 53.4, -245.4, 238.17, -8.341, -110,96});
+            //Sum
             Assert.IsTrue((p1 + p2) == sum);
+            //Subtracion
             Assert.IsTrue((p1 - p2) == sub);
+            //Mult
             Assert.IsTrue((p1 * p2) == mult);
 
         }
