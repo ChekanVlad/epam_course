@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
+    /// <summary>
+    /// Plenka Figures Interface
+    /// </summary>
     public interface PlenkaFigures : IGFigures
     {
     }

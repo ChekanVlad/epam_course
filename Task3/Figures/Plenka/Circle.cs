@@ -7,9 +7,16 @@ using System.Threading.Tasks;
 
 namespace Figures.Plenka
 {
+    /// <summary>
+    /// Circle class
+    /// </summary>
     public class Circle : PlenkaFigures
     {
         private int radius;
+        /// <summary>
+        /// Constructor for creating
+        /// </summary>
+        /// <param name="radius"></param>
         public Circle(int radius)
         {
             if (radius <= 0)
@@ -19,6 +26,11 @@ namespace Figures.Plenka
             this.radius = radius;
         }
 
+        /// <summary>
+        /// Constructor for cutting
+        /// </summary>
+        /// <param name="radius"></param>
+        /// <param name="figure"></param>
         public Circle(int radius, IGFigures figure)
         {
             if (figure.GetMaterial() != "Plenka")
@@ -40,11 +52,20 @@ namespace Figures.Plenka
 
         public double Perimetr => 2 * radius * Math.PI;
 
+        /// <summary>
+        /// Returns figure material
+        /// </summary>
+        /// <returns></returns>
         public string GetMaterial()
         {
             return "Plenka";
         }
 
+        /// <summary>
+        /// Equals method
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -60,16 +81,28 @@ namespace Figures.Plenka
             return radius == circle.radius && Square == circle.Square;
         }
 
+        /// <summary>
+        /// GetHashCode method
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return 131 * radius + 27 * (int)Square + 200 * GetMaterial().Length;
         }
 
+        /// <summary>
+        /// Returns figure type
+        /// </summary>
+        /// <returns></returns>
         public string GetFigureType()
         {
             return "Circle";
         }
 
+        /// <summary>
+        /// ToString method
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string text = "";

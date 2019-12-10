@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
+    /// <summary>
+    /// Paper Figures Interface
+    /// </summary>
     public interface PaperFigures : IGFigures
     {
         Color GetColor();

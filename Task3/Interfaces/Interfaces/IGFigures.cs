@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
+    /// <summary>
+    /// Colors
+    /// </summary>
     public enum Color
     {
         None,
@@ -15,6 +18,10 @@ namespace Interfaces
         Green,
         Blue,
     }
+
+    /// <summary>
+    /// Geometrical Figures Interface
+    /// </summary>
     public interface IGFigures
     {
         double Square { get; }
