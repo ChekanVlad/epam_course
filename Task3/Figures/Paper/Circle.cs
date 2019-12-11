@@ -37,10 +37,6 @@ namespace Figures.Paper
         /// <param name="figure"></param>
         public Circle(int radius, IGFigures figure)
         {
-            if (figure.GetMaterial() != "Paper")
-            {
-                throw new WrongMaterialException();//не совпадает материал
-            }
             if (radius <= 0)
             {
                 throw new InvalidParamException();//неверные параметры

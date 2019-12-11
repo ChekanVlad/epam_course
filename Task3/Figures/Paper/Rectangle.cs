@@ -22,7 +22,7 @@ namespace Figures.Paper
         /// <param name="b"></param>
         public Rectangle(int a, int b)
         {
-            if (a <= 0 && b <= 0)
+            if (a <= 0 || b <= 0)
             {
                 throw new InvalidParamException();
             }
@@ -38,11 +38,7 @@ namespace Figures.Paper
         /// <param name="figure"></param>
         public Rectangle(int a, int b, IGFigures figure)
         {
-            if (figure.GetMaterial() != "Paper")
-            {
-                throw new WrongMaterialException();
-            }
-            if (a <= 0 && b <= 0)
+            if (a <= 0 || b <= 0)
             {
                 throw new InvalidParamException();
             }

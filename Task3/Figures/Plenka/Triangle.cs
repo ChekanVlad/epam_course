@@ -39,10 +39,6 @@ namespace Figures.Plenka
         /// <param name="figure"></param>
         public Triangle(int a, int b, int c, IGFigures figure)
         {
-            if (figure.GetMaterial() != "Plenka")
-            {
-                throw new WrongMaterialException();
-            }
             if (!IsConsist(a, b, c))
             {
                 throw new InvalidParamException();

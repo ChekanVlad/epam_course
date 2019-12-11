@@ -1,0 +1,8 @@
+Circle Paper 2 2
+Circle Plenka 4
+Circle Plenka 7
+Rectangle Paper 1 3 9
+Rectangle Paper 2 5 1
+Triangle Paper 2 7 3 6
+Triangle Plenka 7 4 6
+Rectangle Plenka 5 6

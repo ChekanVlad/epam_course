@@ -41,10 +41,6 @@ namespace Figures.Paper
         /// <param name="figure"></param>
         public Triangle(int a, int b, int c, IGFigures figure)
         {
-            if (figure.GetMaterial() != "Paper")
-            {
-                throw new WrongMaterialException();
-            }
             if (!IsConsist(a, b, c))
             {
                 throw new InvalidParamException();

@@ -1,0 +1,3 @@
+Circle Paper 1 2
+Rectangle Paper 2 5 1
+Triangle Paper 3 7 3 6

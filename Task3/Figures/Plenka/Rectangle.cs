@@ -37,11 +37,7 @@ namespace Figures.Plenka
         /// <param name="figure"></param>
         public Rectangle(int a, int b, IGFigures figure)
         {
-            if (figure.GetMaterial() != "Plenka")
-            {
-                throw new WrongMaterialException();
-            }
-            if (a <= 0 && b <= 0)
+            if (a <= 0 || b <= 0)
             {
                 throw new InvalidParamException();
             }

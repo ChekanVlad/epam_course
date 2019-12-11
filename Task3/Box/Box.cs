@@ -12,14 +12,14 @@ namespace Box
     /// <summary>
     /// Box class
     /// </summary>
-    public class Box
+    public class FigureBox
     {
         private List<IGFigures> figures;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public Box()
+        public FigureBox()
         {
             figures = new List<IGFigures>();
         }
@@ -28,13 +28,17 @@ namespace Box
         /// Constructor
         /// </summary>
         /// <param name="figures"></param>
-        public Box(List<IGFigures> figures) : base()
+        public FigureBox(List<IGFigures> figures)
         {
             if(figures.Count > 20)
             {
                 throw new NoPlaceException();//нет места
             }
-            this.figures = figures;
+            this.figures = new List<IGFigures>();
+            for(int i = 0; i < figures.Count; i++)
+            {
+                this.figures.Add(figures[i]);
+            }
         }
 
         /// <summary>
@@ -46,7 +50,7 @@ namespace Box
             string text = "";
             for (int i = 0; i < figures.Count; i++)
             {
-                text += i.ToString() + "\n";
+                text += (i+1) + figures[i].ToString() + "\n";
             }
             return text;
         }
@@ -70,7 +74,7 @@ namespace Box
             {
                 if (figure.GetHashCode() == figures[i].GetHashCode())
                 {
-                    if (figure.Equals(figures[i])) return;
+                    if (figure.Equals(figures[i])) throw new ExistFigureException();//ужеесть такая фигура
                 }
             }
             figures.Add(figure);
@@ -87,7 +91,7 @@ namespace Box
             {
                 throw new EmptyBoxException();//пустая коробка
             }
-            if (num > figures.Count)
+            if (num > figures.Count || num <= 0)
             {
                 throw new InvalidParamException();//за пределами массива
             }
@@ -104,7 +108,7 @@ namespace Box
             {
                 throw new EmptyBoxException();//пустая коробка
             }
-            if (num > figures.Count)
+            if (num > figures.Count || num <= 0)
             {
                 throw new InvalidParamException();//за пределами массива
             }
@@ -122,9 +126,16 @@ namespace Box
             {
                 throw new EmptyBoxException();//пустая коробка
             }
-            if (num > figures.Count)
+            if (num > figures.Count || num <= 0)
             {
                 throw new InvalidParamException();//за пределами массива
+            }
+            for (int i = 0; i < figures.Count; i++)
+            {
+                if (figure.GetHashCode() == figures[i].GetHashCode())
+                {
+                    if (figure.Equals(figures[i])) throw new ExistFigureException();//уже есть такая фигура
+                }
             }
             figures[num - 1] = figure;
         }
@@ -280,17 +291,17 @@ namespace Box
                     break;
                 case 2:
                     if (fileFormat == "txt") TxtWorker.WriteToFile(GetPaperFigures(), filePath);
-                    else XmlWorker.WriteToXml(figures, filePath);
+                    else XmlWorker.WriteToXml(GetPaperFigures(), filePath);
                     break;
                 case 3:
                     if (fileFormat == "txt") TxtWorker.WriteToFile(GetPlenkaFigures(), filePath);
-                    else XmlWorker.WriteToXml(figures, filePath);
+                    else XmlWorker.WriteToXml(GetPlenkaFigures(), filePath);
                     break;
                 default:
                     throw new InvalidParamException();//неверные параметры
             }
         }
-
+      
         /// <summary>
         /// Write to file
         /// </summary>
@@ -304,7 +315,7 @@ namespace Box
                     figures = TxtWorker.ReadFromFile(filePath);
                     break;
                 case "xml":
-                    figures = TxtWorker.ReadFromFile(filePath);
+                    figures = XmlWorker.ReadFromXml(filePath);
                     break;
                 default:
                     throw new InvalidParamException();//неверные параметры

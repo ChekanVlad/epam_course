@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<figures>
+  <figure type="Circle">
+    <material>Paper</material>
+    <color>1</color>
+    <param>2</param>
+  </figure>
+  <figure type="Circle">
+    <material>Plenka</material>
+    <param>4</param>
+  </figure>
+  <figure type="Rectangle">
+    <material>Paper</material>
+    <color>2</color>
+    <param>5</param>
+    <param>1</param>
+  </figure>
+  <figure type="Triangle">
+    <material>Paper</material>
+    <color>3</color>
+    <param>7</param>
+    <param>3</param>
+    <param>6</param>
+  </figure>
+</figures>

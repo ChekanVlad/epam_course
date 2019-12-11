@@ -57,6 +57,28 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Box\Box.csproj">
+      <Project>{EAA60CF8-FC43-4663-A4A5-9645F78F5191}</Project>
+      <Name>Box</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exceprtions\ExceptionsLib.csproj">
+      <Project>{677B0078-938A-4404-AF0B-A0D12EA86EEA}</Project>
+      <Name>ExceptionsLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FiguresFactoryMethod\FiguresFactoryMethod.csproj">
+      <Project>{7EFEAE1C-1370-4807-A10D-B50EE5D996E7}</Project>
+      <Name>FiguresFactoryMethod</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileWorker\FileWorker.csproj">
+      <Project>{8d3b402e-78b3-4806-b028-aae806d6563b}</Project>
+      <Name>FileWorker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{E8246487-32D2-4B27-8F96-814A191F5BB3}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

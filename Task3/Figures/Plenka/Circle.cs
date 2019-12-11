@@ -34,10 +34,6 @@ namespace Figures.Plenka
         /// <param name="figure"></param>
         public Circle(int radius, IGFigures figure)
         {
-            if (figure.GetMaterial() != "Plenka")
-            {
-                throw new WrongMaterialException();
-            }
             if (radius <= 0)
             {
                 throw new InvalidParamException();

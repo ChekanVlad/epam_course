@@ -23,19 +23,6 @@ namespace ExceptionsLib
         }
 
         /// <summary>
-        /// Wrong material exception
-        /// </summary>
-        public class WrongMaterialException : Exception
-        {
-            public override string Message => "Разные материалы фигур";
-
-            public WrongMaterialException() : base()
-            {
-            }
-        }
-
-
-        /// <summary>
         /// Impossible to cut figure exception
         /// </summary>
         public class CuttingException : Exception
@@ -79,6 +66,18 @@ namespace ExceptionsLib
             public override string Message => "Коробка пуста.";
 
             public EmptyBoxException() : base()
+            {
+            }
+        }
+
+        /// <summary>
+        /// Exist figure exceprion
+        /// </summary>
+        public class ExistFigureException : Exception
+        {
+            public override string Message => "Данная фигура уже есть в коробке.";
+
+            public ExistFigureException() : base()
             {
             }
         }
