@@ -28,11 +28,12 @@ namespace UnitTests
         {
             FigureBox box = new FigureBox();
             box.ReadFromFile(filePathTxt);
-            IGFigures figure1 = factory.CutFigureFromPaper("Circle", 2);
-            IGFigures figure2 = factory.CutFigureFromPlenka("Circle", 4);
-            ((PaperFigures)figure1).Paint(Color.White);
-            Assert.IsTrue(figure1.Equals(box.Get(1)));
-            Assert.IsTrue(figure2.Equals(box.Get(2)));
+            IGFigures figure1 = factory.CutFigureFromPaper("Circle", 9);
+            IGFigures figure2 = factory.CutFigureFromPlenka("Circle", 12);
+            box.Add(figure1);
+            box.Add(figure2);
+            Assert.IsTrue(figure2.Equals(box.Get(box.GetCount())));
+            Assert.IsTrue(figure1.Equals(box.Get(box.GetCount()-1)));
         }
 
         /// <summary>
@@ -43,11 +44,12 @@ namespace UnitTests
         {
             FigureBox box = new FigureBox();
             box.ReadFromFile(filePathXml);
-            IGFigures figure1 = factory.CutFigureFromPaper("Circle", 2);
-            IGFigures figure2 = factory.CutFigureFromPlenka("Circle", 4);
-            ((PaperFigures)figure1).Paint(Color.White);
-            Assert.IsTrue(figure1.Equals(box.Get(1)));
-            Assert.IsTrue(figure2.Equals(box.Get(2)));
+            IGFigures figure1 = factory.CutFigureFromPaper("Circle", 9);
+            IGFigures figure2 = factory.CutFigureFromPlenka("Circle", 12);
+            box.Add(figure1);
+            box.Add(figure2);
+            Assert.IsTrue(figure2.Equals(box.Get(box.GetCount())));
+            Assert.IsTrue(figure1.Equals(box.Get(box.GetCount() - 1)));
         }
 
         /// <summary>
