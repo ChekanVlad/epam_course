@@ -4,6 +4,7 @@ using FiguresFactoryMethod;
 using Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FileWorker;
+using Figures.Paper;
 //using static ExceptionsLib.Exceptions;
 
 namespace UnitTests
@@ -19,6 +20,8 @@ namespace UnitTests
         string filePathXml = "..\\..\\..\\files\\text.xml";
         string filePathTxt2 = "..\\..\\..\\files\\text2.txt";
         string filePathXml2 = "..\\..\\..\\files\\text2.xml";
+        string readTestTxt = "..\\..\\..\\files\\readtest.txt";
+        string readTestXml = "..\\..\\..\\files\\readtest.xml";
 
         /// <summary>
         /// Test for *.txt reading
@@ -27,13 +30,9 @@ namespace UnitTests
         public void ReadTestTxt()
         {
             FigureBox box = new FigureBox();
-            box.ReadFromFile(filePathTxt);
-            IGFigures figure1 = factory.CutFigureFromPaper("Circle", 9);
-            IGFigures figure2 = factory.CutFigureFromPlenka("Circle", 12);
-            box.Add(figure1);
-            box.Add(figure2);
-            Assert.IsTrue(figure2.Equals(box.Get(box.GetCount())));
-            Assert.IsTrue(figure1.Equals(box.Get(box.GetCount()-1)));
+            box.ReadFromFile(readTestTxt);
+            IGFigures figure = factory.CutFigureFromPlenka("Circle", 4);
+            Assert.IsTrue(figure.Equals(box.Get(1)));
         }
 
         /// <summary>
@@ -43,13 +42,9 @@ namespace UnitTests
         public void ReadTestXml()
         {
             FigureBox box = new FigureBox();
-            box.ReadFromFile(filePathXml);
-            IGFigures figure1 = factory.CutFigureFromPaper("Circle", 9);
-            IGFigures figure2 = factory.CutFigureFromPlenka("Circle", 12);
-            box.Add(figure1);
-            box.Add(figure2);
-            Assert.IsTrue(figure2.Equals(box.Get(box.GetCount())));
-            Assert.IsTrue(figure1.Equals(box.Get(box.GetCount() - 1)));
+            box.ReadFromFile(readTestXml);
+            IGFigures figure = factory.CutFigureFromPlenka("Circle", 4);
+            Assert.IsTrue(figure.Equals(box.Get(1)));
         }
 
         /// <summary>
@@ -199,5 +194,4 @@ namespace UnitTests
             Assert.IsTrue(((PaperFigures)box.Get(2)).GetColor() == Color.White);
             Assert.IsTrue(((PaperFigures)box.Get(3)).GetColor() == Color.Red);
         }
-    }
 }

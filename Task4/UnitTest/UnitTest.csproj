@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{06B0C4FF-8BB6-472C-ABCD-1C907FB9D04D}</ProjectGuid>
+    <ProjectGuid>{0E35EE53-1EA1-4FA3-B720-EEBBEA8E54C3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitTests</RootNamespace>
-    <AssemblyName>UnitTests</AssemblyName>
+    <RootNamespace>UnitTest</RootNamespace>
+    <AssemblyName>UnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -29,7 +29,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\UnitTests.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -50,37 +49,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OtherTests.cs" />
-    <Compile Include="ExceptionsTests.cs" />
+    <Compile Include="UnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Box\Box.csproj">
-      <Project>{EAA60CF8-FC43-4663-A4A5-9645F78F5191}</Project>
-      <Name>Box</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Exceprtions\ExceptionsLib.csproj">
-      <Project>{677B0078-938A-4404-AF0B-A0D12EA86EEA}</Project>
-      <Name>ExceptionsLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FiguresFactoryMethod\FiguresFactoryMethod.csproj">
-      <Project>{7EFEAE1C-1370-4807-A10D-B50EE5D996E7}</Project>
-      <Name>FiguresFactoryMethod</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Figures\Figures.csproj">
-      <Project>{CDB936DF-D7BE-4C8D-89C8-A568C3EB5404}</Project>
-      <Name>Figures</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FileWorker\FileWorker.csproj">
-      <Project>{8d3b402e-78b3-4806-b028-aae806d6563b}</Project>
-      <Name>FileWorker</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
-      <Project>{E8246487-32D2-4B27-8F96-814A191F5BB3}</Project>
-      <Name>Interfaces</Name>
+    <ProjectReference Include="..\Classes\Classes.csproj">
+      <Project>{fcece88a-4522-446c-8e67-248250fd233a}</Project>
+      <Name>Classes</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
