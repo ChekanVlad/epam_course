@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BinaryTree;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTest
 {
@@ -10,7 +8,6 @@ namespace UnitTest
         [TestMethod]
         public void TestMethod()
         {
-            
         }
     }
 }

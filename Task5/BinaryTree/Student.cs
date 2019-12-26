@@ -6,19 +6,27 @@ using System.Threading.Tasks;
 
 namespace BinaryTree
 {
-    public class Student
+    [Serializable]
+    public class Student<T>
     {
-        string Name { get; set; }
-        string TestName { get; set; }
-        DateTime TestDate { get; set; }
-        int Mark { get; set; }
+        public string Name { get; set; }
+        public string TestName { get; set; }
+        public DateTime TestDate { get; set; }
+        public T Mark { get; set; }
 
-        public Student(string name, string testName, DateTime testDate, int mark)
+        public Student() { }
+
+        public Student(string name, string testName, DateTime testDate, T mark)
         {
             Name = name;
             TestName = testName;
             TestDate = testDate;
-            Mark = mark;    
+            Mark = mark;
+        }
+
+        public override string ToString()
+        {
+            return Name + " " + TestName + " " + TestDate.ToShortDateString() + " " + Mark;
         }
     }
 }

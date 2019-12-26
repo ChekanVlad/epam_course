@@ -12,60 +12,92 @@ namespace BinaryTree
     [Serializable]
     public class Tree<T> where T : IComparable<T>
     {
+        private XmlSerializer formatter = new XmlSerializer(typeof(Tree<T>));
+        [XmlIgnore]
         Tree<T> parent, left, right;
-        public T value;
-        private List<T> listForPrint = new List<T>();
+        private T value;
+        [XmlIgnore]
+        Student<T> studentInfo;
+        public List<Student<T>> elements = new List<Student<T>>();
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Tree()
         {
         }
 
         /// <summary>
-        /// Tree constructor
+        /// Constructor
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="studentInfo"></param>
         /// <param name="parent"></param>
-        public Tree(T value, Tree<T> parent)
+        public Tree(Student<T> studentInfo, Tree<T> parent)
         {
-            this.value = value;
+            this.studentInfo = studentInfo;
+            value = studentInfo.Mark;
             this.parent = parent;
         }
 
         /// <summary>
         /// Serialize tree
         /// </summary>
-        public void SerializateTree()
+        public void SerializeTree()
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(Tree<T>));
-
+            PreOrderTraversal();
             using (FileStream fs = new FileStream("E:\\SD-23\\3k\\labs_oop_repos_xota6\\epam_course\\Task5\\BinaryTree\\mySerTree.xml", FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, this);
             }
         }
+
+        /// <summary>
+        /// Deserialize tree
+        /// </summary>
+        public void DeserializeTree()
+        {
+            if(studentInfo != null)
+            {
+                throw new Exception("You must deserialize info into empty tree");
+            }
+            using (FileStream fs = new FileStream("E:\\SD-23\\3k\\labs_oop_repos_xota6\\epam_course\\Task5\\BinaryTree\\mySerTree.xml", FileMode.OpenOrCreate))
+            {
+                Tree<T> newTree = (Tree<T>)formatter.Deserialize(fs);
+                this.elements = newTree.elements;
+            }
+        }
+
+        //
         /// <summary>
         /// Add value to Tree
         /// </summary>
         /// <param name="value"></param>
-        public void Add(T value)
+        public void Add(Student<T> studentInfo)
         {
-            if (value.CompareTo(this.value) < 0)
+            if(this.studentInfo == null)
             {
-                if (this.left == null)
+                this.studentInfo = studentInfo;
+                value = studentInfo.Mark;
+                return;
+            }
+
+            if (studentInfo.Mark.CompareTo(value) < 0)
+            {
+                if (left == null)
                 {
-                    this.left = new Tree<T>(value, this);
+                    left = new Tree<T>(studentInfo, this);
                 }
-                else if (this.left != null)
-                    this.left.Add(value);
+                else if (left != null)
+                    left.Add(studentInfo);
             }
             else
             {
-                if (this.right == null)
+                if (right == null)
                 {
-                    this.right = new Tree<T>(value, this);
+                    right = new Tree<T>(studentInfo, this);
                 }
-                else if (this.right != null)
-                    this.right.Add(value);
+                else if (right != null)
+                    right.Add(studentInfo);
             }
         }
 
@@ -224,27 +256,28 @@ namespace BinaryTree
             }
             return false;
         }
-        /*
-        private void Print(Tree<T> node)
-        {
-            if (node == null) return;
-            Print(node.left);
-            listForPrint.Add(node.value);
-            Console.Write(node + " ");
-            if (node.right != null)
-                Print(node.right);
-        }
-        
+
         /// <summary>
-        /// Print all elements
+        /// PreOrder (префиксный обход, сохраняет структуру)
         /// </summary>
-        public void Print()
+        public void PreOrderTraversal()
         {
-            listForPrint.Clear();
-            Print(this);
-            Console.WriteLine();
+            elements.Clear();
+            PreOrderTraversal(this);
+            //return elements;
         }
-        */
+
+        private void PreOrderTraversal(Tree<T> node)
+        {
+            if (node != null)
+            {
+                //action
+                elements.Add(node.studentInfo);
+                PreOrderTraversal(node.left);
+                PreOrderTraversal(node.right);
+            }
+        }
+
         /// <summary>
         /// ToString method
         /// </summary>
