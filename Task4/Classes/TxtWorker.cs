@@ -16,8 +16,6 @@ namespace Classes
         /// <summary>
         /// Write to TXT file
         /// </summary>
-        /// <param name="figures">Figures List</param>
-        /// <param name="filePath">File Path</param>
         public static void WriteToFile(string message)
         {
             using (StreamWriter SW = new StreamWriter(log, true))

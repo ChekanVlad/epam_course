@@ -9,6 +9,9 @@ namespace UnitTest
     {
         delegate string Message(string text);
         static string testString = "привет22";
+        /// <summary>
+        /// test for reversing string method
+        /// </summary>
         [TestMethod]
         public void ReverseRegisterTest()
         {
@@ -16,6 +19,9 @@ namespace UnitTest
             Assert.AreEqual("ПРИВЕТ22", operation(testString));
         }
 
+        /// <summary>
+        /// test for deleting all digits
+        /// </summary>
         [TestMethod]
         public void DeleteDigitsTest()
         {
@@ -23,6 +29,9 @@ namespace UnitTest
             Assert.AreEqual("привет", operation(testString));
         }
 
+        /// <summary>
+        /// test for deleting all letters
+        /// </summary>
         [TestMethod]
         public void DeleteLettersTest()
         {
@@ -30,6 +39,9 @@ namespace UnitTest
             Assert.AreEqual("22", operation(testString));
         }
 
+        /// <summary>
+        /// test for translit method
+        /// </summary>
         [TestMethod]
         public void TranslitTest()
         {
