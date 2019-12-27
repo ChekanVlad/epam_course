@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<TreeOfDouble xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <elements>
+    <StudentOfDouble>
+      <Name>Valentin</Name>
+      <TestName>Math</TestName>
+      <TestDate>2019-12-28T00:03:49.2009209+03:00</TestDate>
+      <Mark>6.1</Mark>
+    </StudentOfDouble>
+    <StudentOfDouble>
+      <Name>Vlad</Name>
+      <TestName>Russian</TestName>
+      <TestDate>2019-12-28T00:03:49.2019227+03:00</TestDate>
+      <Mark>1.6</Mark>
+    </StudentOfDouble>
+    <StudentOfDouble>
+      <Name>Sergei</Name>
+      <TestName>English</TestName>
+      <TestDate>2019-12-28T00:03:49.2039237+03:00</TestDate>
+      <Mark>4.5</Mark>
+    </StudentOfDouble>
+    <StudentOfDouble>
+      <Name>Eugene</Name>
+      <TestName>Literature</TestName>
+      <TestDate>2019-12-28T00:03:49.2039237+03:00</TestDate>
+      <Mark>9.9</Mark>
+    </StudentOfDouble>
+    <StudentOfDouble>
+      <Name>Capone</Name>
+      <TestName>Biology</TestName>
+      <TestDate>2019-12-28T00:03:49.2039237+03:00</TestDate>
+      <Mark>8.3</Mark>
+    </StudentOfDouble>
+  </elements>
+</TreeOfDouble>

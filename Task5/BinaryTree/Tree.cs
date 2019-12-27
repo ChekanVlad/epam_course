@@ -14,8 +14,9 @@ namespace BinaryTree
     {
         private XmlSerializer formatter = new XmlSerializer(typeof(Tree<T>));
         [XmlIgnore]
-        Tree<T> parent, left, right;
-        private T value;
+        public Tree<T> parent, left, right;
+        [XmlIgnore]
+        public T value;
         [XmlIgnore]
         Student<T> studentInfo;
         public List<Student<T>> elements = new List<Student<T>>();
@@ -42,10 +43,10 @@ namespace BinaryTree
         /// <summary>
         /// Serialize tree
         /// </summary>
-        public void SerializeTree()
+        public void SerializeTree(string filePath)
         {
             PreOrderTraversal();
-            using (FileStream fs = new FileStream("E:\\SD-23\\3k\\labs_oop_repos_xota6\\epam_course\\Task5\\BinaryTree\\mySerTree.xml", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, this);
             }
@@ -54,16 +55,20 @@ namespace BinaryTree
         /// <summary>
         /// Deserialize tree
         /// </summary>
-        public void DeserializeTree()
+        public void DeserializeTree(string filePath)
         {
             if(studentInfo != null)
             {
-                throw new Exception("You must deserialize info into empty tree");
+                throw new Exception("You must deserialize info into empty tree.");
             }
-            using (FileStream fs = new FileStream("E:\\SD-23\\3k\\labs_oop_repos_xota6\\epam_course\\Task5\\BinaryTree\\mySerTree.xml", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
             {
                 Tree<T> newTree = (Tree<T>)formatter.Deserialize(fs);
                 this.elements = newTree.elements;
+                foreach(Student<T> i in elements)
+                {
+                    this.Add(i);
+                }
             }
         }
 
@@ -130,16 +135,13 @@ namespace BinaryTree
         /// <returns></returns>
         public bool Remove(T value)
         {
-            //Проверяем, существует ли данный узел
             Tree<T> tree = Search(value);
             if (tree == null)
             {
-                //Если узла не существует, вернем false
                 return false;
             }
             Tree<T> curTree;
 
-            //Если удаляем корень
             if (tree == this)
             {
                 if (tree.right != null)
@@ -159,7 +161,6 @@ namespace BinaryTree
                 return true;
             }
 
-            //Удаление листьев
             if (tree.left == null && tree.right == null && tree.parent != null)
             {
                 if (tree == tree.parent.left)
@@ -187,7 +188,6 @@ namespace BinaryTree
                 return true;
             }
 
-            //Удаление узла, имеющего правое поддерево, но не имеющее левого поддерева
             if (tree.left == null && tree.right != null)
             {
                 //Меняем родителя
@@ -203,7 +203,6 @@ namespace BinaryTree
                 return true;
             }
 
-            //Удаляем узел, имеющий поддеревья с обеих сторон
             if (tree.right != null && tree.left != null)
             {
                 curTree = tree.right;
@@ -213,7 +212,6 @@ namespace BinaryTree
                     curTree = curTree.left;
                 }
 
-                //Если самый левый элемент является первым потомком
                 if (curTree.parent == tree)
                 {
                     curTree.left = tree.left;
@@ -229,7 +227,6 @@ namespace BinaryTree
                     }
                     return true;
                 }
-                //Если самый левый элемент НЕ является первым потомком
                 else
                 {
                     if (curTree.right != null)
@@ -276,15 +273,6 @@ namespace BinaryTree
                 PreOrderTraversal(node.left);
                 PreOrderTraversal(node.right);
             }
-        }
-
-        /// <summary>
-        /// ToString method
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return value.ToString();
         }
     }
 }

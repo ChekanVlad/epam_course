@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<TreeOfInt32 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <elements>
+    <StudentOfInt32>
+      <Name>Valentin</Name>
+      <TestName>Math</TestName>
+      <TestDate>2019-12-28T00:14:49.4144989+03:00</TestDate>
+      <Mark>6</Mark>
+    </StudentOfInt32>
+    <StudentOfInt32>
+      <Name>Vlad</Name>
+      <TestName>Russian</TestName>
+      <TestDate>2019-12-28T00:14:49.4144989+03:00</TestDate>
+      <Mark>1</Mark>
+    </StudentOfInt32>
+    <StudentOfInt32>
+      <Name>Sergei</Name>
+      <TestName>English</TestName>
+      <TestDate>2019-12-28T00:14:49.4144989+03:00</TestDate>
+      <Mark>4</Mark>
+    </StudentOfInt32>
+    <StudentOfInt32>
+      <Name>Eugene</Name>
+      <TestName>Literature</TestName>
+      <TestDate>2019-12-28T00:14:49.4144989+03:00</TestDate>
+      <Mark>10</Mark>
+    </StudentOfInt32>
+    <StudentOfInt32>
+      <Name>Capone</Name>
+      <TestName>Biology</TestName>
+      <TestDate>2019-12-28T00:14:49.4144989+03:00</TestDate>
+      <Mark>9</Mark>
+    </StudentOfInt32>
+  </elements>
+</TreeOfInt32>
