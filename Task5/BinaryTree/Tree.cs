@@ -274,5 +274,54 @@ namespace BinaryTree
                 PreOrderTraversal(node.right);
             }
         }
+
+        /// <summary>
+        /// balance tree
+        /// </summary>
+        public void BalanceTree()
+        {
+            List <Tree<T>> list = new List<Tree<T>>();
+
+            FillList(this, list);
+           
+            int count = list.Count;
+            //remove child
+            left = null;
+            right = null;
+            //
+            BalanceTree(0, count - 1, list);
+            //yare yare daze
+            studentInfo = right.studentInfo;
+            value = right.value;
+            left = right.left;
+            right = right.right;
+            //
+        }
+
+        private void BalanceTree(int minSublist, int maxSublist, List<Tree<T>> list)
+        {
+            if (minSublist <= maxSublist)
+            {
+                int middleNode = (int)Math.Ceiling(((double)minSublist + maxSublist) / 2);
+
+                Add(list[middleNode].studentInfo);
+
+                BalanceTree(minSublist, middleNode - 1, list);
+                BalanceTree(middleNode + 1, maxSublist, list);
+            }
+        }
+
+
+        private void FillList(Tree<T> tree, List<Tree<T>> list)
+        {
+            if (tree != null)
+            {
+                FillList(tree.left, list);
+
+                list.Add(tree);
+
+                FillList(tree.right, list);
+            }
+        }
     }
 }

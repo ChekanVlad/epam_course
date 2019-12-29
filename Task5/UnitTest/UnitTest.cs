@@ -90,5 +90,28 @@ namespace UnitTest
             Assert.IsTrue(tree.Search(22.11) == null);
             Assert.IsTrue(tree.Search(1.6) != null && tree.Search(1.6).value == 1.6);
         }
+
+        /// <summary>
+        /// Balance test
+        /// </summary>
+        [TestMethod]
+        public void BalanceTest()
+        {
+            Tree<int> tree1 = new Tree<int>();
+            tree1.Add(new Student<int>("Valentin", "Math", DateTime.Now, 1));
+            tree1.Add(new Student<int>("Vlad", "Russian", DateTime.Now, 2));
+            tree1.Add(new Student<int>("Sergei", "English", DateTime.Now, 3));
+            tree1.Add(new Student<int>("Eugene", "Literature", DateTime.Now, 4));
+            tree1.Add(new Student<int>("Capone", "Biology", DateTime.Now, 5));
+            tree1.Add(new Student<int>("Stan", "Chemistry", DateTime.Now, 6));
+            tree1.Add(new Student<int>("Lee", "Japanese", DateTime.Now, 7));
+            tree1.BalanceTree();
+            //
+            Assert.AreEqual(tree1.value, 4);
+            Assert.AreEqual(tree1.left.value, 2);
+            Assert.AreEqual(tree1.left.right.value, 3);
+            Assert.AreEqual(tree1.right.left.value, 5);
+            Assert.AreEqual(tree1.right.value, 6);
+        }
     }
 }
