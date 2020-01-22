@@ -1,17 +1,16 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using MySql.Data.MySqlClient;
-
+using MySql;
+using DAO;
 namespace UnitTests
 {
     [TestClass]
-    public class UnitTest
+    public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod()
+        public void TestMethod1()
         {
-
+            Factory factory = DAOFactory.getInstance("");
         }
     }
 }
