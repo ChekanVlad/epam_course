@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
-    public class Timetable
+    public class Exam
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public int GroupId { get; set; }
         public int SubjectId { get; set; }
         public string SubjectType { get; set; }
-        public Timetable(int id, DateTime date, int groupId, int subjectId, string subjectType)
+        public Exam(int id, DateTime date, int groupId, int subjectId, string subjectType)
         {
             Id = id;
             Date = date;
@@ -21,7 +21,7 @@ namespace ORM
             SubjectId = subjectId;
             SubjectType = subjectType;
         }
-        public Timetable(DateTime date, int groupId, int subjectId, string subjectType)
+        public Exam(DateTime date, int groupId, int subjectId, string subjectType)
         {
             Date = date;
             GroupId = groupId;

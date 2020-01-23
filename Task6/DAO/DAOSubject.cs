@@ -5,13 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using ORM;
 
-namespace DAO
+namespace DAOClasses
 {
-    class DAOStudent : DAO<Student>
+    public class DAOSubject : DAO<Subject>
     {
-        public DAOStudent(string connectionString) : base(connectionString)
+        public DAOSubject(string connectionString) : base(connectionString)
         {
-
         }
     }
 }

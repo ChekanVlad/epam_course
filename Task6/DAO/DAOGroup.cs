@@ -5,13 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using ORM;
 
-namespace DAO
+namespace DAOClasses
 {
-    class DAOTimetable : DAO<Timetable>
+    public class DAOGroup : DAO<Group>
     {
-        public DAOTimetable(string connectionString) : base(connectionString)
+        public DAOGroup(string connectionString) : base(connectionString)
         {
-
         }
     }
 }

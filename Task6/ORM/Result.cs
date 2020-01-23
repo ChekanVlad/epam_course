@@ -20,5 +20,11 @@ namespace ORM
             Mark = mark;
         }
 
+        public Result(int studentId, int timetableId, double mark)
+        {
+            StudentId = studentId;
+            TimetableId = timetableId;
+            Mark = mark;
+        }
     }
 }

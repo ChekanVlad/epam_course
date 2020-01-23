@@ -1,204 +1,200 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Reflection;
 
-namespace DAO
+namespace DAOClasses
 {
-    public class DAO<T> : IDAO<T>
+    public abstract class DAO<T> : IDAO<T>
     {
-        private string ConnectionString { get; set; }
+        private string connectionString;
 
         public DAO(string connectionString)
         {
-            ConnectionString = connectionString;
+            this.connectionString = connectionString;
+        }
+
+        public void Create(T t)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                Type type = t.GetType();
+                PropertyInfo[] fields = type.GetProperties();
+                string table = type.Name + "s";
+
+                conn.Open();
+
+                string values = "";
+                string columns = "";
+
+                MySqlCommand command = new MySqlCommand();
+
+                foreach (PropertyInfo field in fields)
+                {
+                    if (!field.CanWrite || field.Name == "Id")
+                        continue;
+
+                    columns += field.Name + ", ";
+                    values += "@" + field.Name + ", ";
+
+                    command.Parameters.AddWithValue("@" + field.Name, field.GetValue(t));
+                }
+
+                values = values.Substring(0, values.Length - 2);
+                columns = columns.Substring(0, columns.Length - 2);
+
+                string query = $"INSERT INTO {table} ({columns}) VALUES ({values})";
+
+                command.Connection = conn;
+                command.CommandText = query;
+                command.ExecuteNonQuery();
+
+                //return (answer > 0) ? true : false;
+            }
         }
 
         public void Delete(int id)
         {
-           using (MySqlConnection sqlConnection = new MySqlConnection(ConnectionString))
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 Type type = typeof(T);
-                string tableName = type.Name + "s";
-                PropertyInfo IdField = type.GetProperty("Id");
-                string parameter = "@" + IdField.Name;
-                sqlConnection.Open();
-                string sqlExpression = $"DELETE FROM {tableName} WHERE Id={parameter}";
-                MySqlCommand sqlCommand = new MySqlCommand(sqlExpression, sqlConnection);
-                MySqlParameter idParameter = new MySqlParameter(parameter, id);
-                sqlCommand.Parameters.Add(idParameter);
-                sqlCommand.ExecuteNonQuery();
+                string table = type.Name + "s";
+
+                conn.Open();
+
+                string query = $"DELETE FROM {table} WHERE id=@id";
+
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@id", id);
+
+                command.ExecuteNonQuery();
+
+                //return (answer > 0) ? true : false;
             }
         }
 
         public T Read(int id)
         {
-            using (MySqlConnection sqlConnection = new MySqlConnection(ConnectionString))
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 Type type = typeof(T);
-                string tableName = type.Name + "s";
-                PropertyInfo IdField = type.GetProperty("Id");
-                string parameter = "@" + IdField.Name;
-                PropertyInfo[] classFields = type.GetProperties();
-                sqlConnection.Open();
-                string sqlExpression = $"SELECT * FROM {tableName} WHERE Id={parameter}";
-                MySqlCommand sqlCommand = new MySqlCommand(sqlExpression, sqlConnection);
-                MySqlParameter idParameter = new MySqlParameter(parameter, id);
-                sqlCommand.Parameters.Add(idParameter);
-                MySqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-                if (sqlDataReader.HasRows)
+                PropertyInfo[] fields = type.GetProperties();
+                string table = type.Name + "s";
+
+                conn.Open();
+
+                string query = $"SELECT * FROM {table} WHERE id=@id";
+
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@id", id);
+
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
                 {
-                    object[] par = new object[sqlDataReader.FieldCount];
-                    while (sqlDataReader.Read())
+                    object[] par = new object[reader.FieldCount];
+
+                    while (reader.Read())
                     {
-                        if (sqlDataReader.FieldCount != classFields.Length)
+                        if (reader.FieldCount != fields.Length)
                         {
-                            throw new Exception();
+                            throw new Exception("The number of type parameters and reader do not match.");
                         }
-                        for (int i = 0; i < sqlDataReader.FieldCount; i++)
+
+                        for (int i = 0; i < reader.FieldCount; i++)
                         {
-                            par[i] = sqlDataReader.GetValue(i);
+                            par[i] = reader.GetValue(i);
                         }
                     }
                     return GetObject(par);
                 }
                 else
                 {
-                    throw new Exception();
+                    throw new ArgumentException("Id not found.");
                 }
             }
         }
-
-        public void Update(T t)
+        public List<T> ReadAll()
         {
-            using (MySqlConnection sqlConnection = new MySqlConnection(ConnectionString))
-            {
-                Type type = t.GetType();
-
-                PropertyInfo IdField = type.GetProperty("Id");
-                string parameter = "@" + IdField.Name;
-                PropertyInfo[] classFields = type.GetProperties();
-                string tableName = type.Name + "s";
-                string resultingString = "";
-                MySqlCommand sqlCommand = new MySqlCommand();
-                foreach (var property in classFields)
-                {
-                    if (property.CanWrite == false) 
-                        continue;
-
-                    if (resultingString == "")
-                    {
-                        resultingString += property.Name + "=@" + property.Name;
-                        MySqlParameter sqlParameter = new MySqlParameter("@" + property.Name, property.GetValue(t));
-                        sqlCommand.Parameters.Add(sqlParameter);
-                    }
-                    else
-                    {
-                        resultingString += ", " + property.Name + "=@" + property.Name;
-                        MySqlParameter sqlParameter = new MySqlParameter("@" + property.Name, property.GetValue(t));
-                        sqlCommand.Parameters.Add(sqlParameter);
-                    }
-                }
-
-                string expression = $"UPDATE {tableName} SET {resultingString} WHERE Id={parameter}";
-                MySqlParameter idParameter = new MySqlParameter(parameter, IdField.GetValue(t));
-                sqlCommand.Parameters.Add(idParameter);
-                sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = expression;
-                sqlConnection.Open();
-                sqlCommand.ExecuteNonQuery();
-            }
-        }
-
-        public void Create(T t)
-        {
-            using (MySqlConnection sqlConnection = new MySqlConnection(ConnectionString))
-            {
-                Type type = t.GetType();
-                PropertyInfo[] classFields = type.GetProperties();
-
-                string tableName = type.Name + "s";
-
-                string columns = "";
-
-                string parameters = "";
-
-                MySqlCommand sqlCommand = new MySqlCommand();
-
-                foreach (var property in classFields)
-                {
-                    if (property.CanWrite == false) continue;
-
-                    if (columns == "")
-                    {
-                        columns += property.Name;
-                        parameters += "@" + property.Name;
-
-                        MySqlParameter sqlParameter = new MySqlParameter("@" + property.Name, property.GetValue(t));
-                        sqlCommand.Parameters.Add(sqlParameter);
-                    }
-                    else
-                    {
-                        columns += ", " + property.Name;
-                        parameters += ", " + "@" + property.Name;
-
-                        MySqlParameter sqlParameter = new MySqlParameter("@" + property.Name, property.GetValue(t));
-                        sqlCommand.Parameters.Add(sqlParameter);
-                    }
-                }
-
-                string expression = $"INSERT INTO {tableName} ({columns }) VALUES ({parameters})";
-
-                sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = expression;
-
-                sqlConnection.Open();
-                sqlCommand.ExecuteNonQuery();
-            }
-        }
-
-        public List<T> ReadAll(T t)
-        {
-            using (MySqlConnection sqlConnection = new MySqlConnection(ConnectionString))
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 Type type = typeof(T);
-                string tableName = type.Name + "s";
-                PropertyInfo[] classFields = type.GetProperties();
-                sqlConnection.Open();
-                string sqlExpression = $"SELECT * FROM {tableName}";
-                MySqlCommand sqlCommand = new MySqlCommand(sqlExpression, sqlConnection);
-                MySqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-                List<T> tempListT = new List<T>();
-                if (sqlDataReader.HasRows)
+                PropertyInfo[] fields = type.GetProperties();
+                string table = type.Name + "s";
+
+                conn.Open();
+
+                string query = $"SELECT * FROM {table}";
+
+                MySqlCommand command = new MySqlCommand(query, conn);
+
+                MySqlDataReader reader = command.ExecuteReader();
+
+                List<T> list = new List<T>();
+                if (reader.HasRows)
                 {
-                    object[] par = new object[sqlDataReader.FieldCount];
-                    while (sqlDataReader.Read())
+                    object[] par = new object[reader.FieldCount];
+
+                    while (reader.Read())
                     {
-                        if (sqlDataReader.FieldCount != classFields.Length)
+                        if (reader.FieldCount != fields.Length)
                         {
-                            throw new Exception();
+                            throw new Exception("The number of type parameters and reader do not match.");
                         }
 
-                        for (int i = 0; i < sqlDataReader.FieldCount; i++)
+                        for (int i = 0; i < reader.FieldCount; i++)
                         {
-                            par[i] = sqlDataReader.GetValue(i);
+                            par[i] = reader.GetValue(i);
                         }
-                        tempListT.Add(GetObject(par));
-                        Array.Clear(par, 0, sqlDataReader.FieldCount);
+                        list.Add(GetObject(par));
+                        Array.Clear(par, 0, reader.FieldCount);
                     }
-                    return tempListT;
+                    return list;
                 }
                 else
                 {
-                    throw new Exception();
+                    throw new ArgumentException("Id not found.");
                 }
             }
         }
 
-        protected T GetObject(params object[] args)
+        public void Update(T obj, int id)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                Type type = obj.GetType();
+                PropertyInfo[] fields = type.GetProperties();
+                string table = type.Name + "s";
+
+                conn.Open();
+
+                MySqlCommand command = new MySqlCommand();
+
+                string values = "";
+
+                foreach (PropertyInfo field in fields)
+                {
+                    if (!field.CanWrite || field.Name == "Id")
+                        continue;
+
+                    values += values == "" ? field.Name + "=@" + field.Name : "," + field.Name + "=@" + field.Name;
+
+                    command.Parameters.AddWithValue("@" + field.Name, field.GetValue(obj));
+                }
+
+                string query = $"UPDATE {table} SET {values} WHERE id=@id";
+
+                command.Connection = conn;
+                command.CommandText = query;
+                command.Parameters.AddWithValue("@id", id);
+
+                command.ExecuteNonQuery();
+
+                //return (answer > 0) ? true : false;
+            }
+        }
+
+        private T GetObject(params object[] args)
         {
             return (T)Activator.CreateInstance(typeof(T), args);
         }

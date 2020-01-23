@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAO
+namespace DAOClasses
 {
     public interface IDAO<T>
     {
         void Create(T t);
         T Read(int id);
+        void Update(T t, int id);
         void Delete(int id);
-        void Update(T t);
-        List<T> ReadAll(T t);
+        List<T> ReadAll();
     }
 }

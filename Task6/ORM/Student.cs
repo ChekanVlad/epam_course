@@ -10,11 +10,11 @@ namespace ORM
     {
         public int Id { get; set; }
         public string Fio { get; set; }
-        public string GroupId { get; set; }
+        public int GroupId { get; set; }
         public string Gender { get; set; }
         public DateTime BirthDate { get; set; }
 
-        public Student(int id, string fio, string groupId, string gender, DateTime birthDate)
+        public Student(int id, string fio, int groupId, string gender, DateTime birthDate)
         {
             Id = id;
             Fio = fio;
@@ -23,7 +23,7 @@ namespace ORM
             BirthDate = birthDate;
         }
 
-        public Student(string fio, string groupId, string gender, DateTime birthDate)
+        public Student(string fio, int groupId, string gender, DateTime birthDate)
         {
             Fio = fio;
             GroupId = groupId;

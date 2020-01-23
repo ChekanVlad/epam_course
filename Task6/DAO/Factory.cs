@@ -3,62 +3,85 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ORM;
 
-namespace DAO
+namespace DAOClasses
 {
     public abstract class Factory
     {
-        public abstract IDAO<Student> GetDaoStudent();
-        public abstract IDAO<Group> GetDaoGroup();
-        public abstract IDAO<Timetable> GetDaoExam();
-        public abstract IDAO<Result> GetDaoResult();
-        public abstract IDAO<Subject> GetDaoSubject();
+        public abstract DAOGroup GetDAOGroup();
+        public abstract DAOSubject GetDAOSubject();
+        public abstract DAOStudent GetDAOStudent();
+        public abstract DAOExam GetDAOExam();
+        public abstract DAOResult GetDAOResult();
     }
 
     public class DAOFactory : Factory
     {
         private static DAOFactory instance;
-        public static string ConnectionString { get; private set; }
+        private static DAOGroup DAOgroup;
+        private static DAOSubject DAOsubject;
+        private static DAOStudent DAOstudent;
+        private static DAOExam DAOexam;
+        private static DAOResult DAOresult;
+        private static string connectionString;
         private DAOFactory()
-        { }
-        public static DAOFactory getInstance(string connectionString)
         {
-            if (instance == null)
+
+        }
+
+        public static DAOFactory GetInstance(string connString)
+        {
+            if(instance == null)
             {
                 instance = new DAOFactory();
-                ConnectionString = connectionString;
+                connectionString = connString;
             }
             return instance;
         }
-        public override IDAO<Student> GetDaoStudent()
+
+        public override DAOExam GetDAOExam()
         {
-            DAOStudent daoStudent = new DAOStudent(ConnectionString);
-            return daoStudent;
+            if(DAOexam == null)
+            {
+                DAOexam = new DAOExam(connectionString);
+            }
+            return DAOexam;
         }
 
-        public override IDAO<Group> GetDaoGroup()
+        public override DAOGroup GetDAOGroup()
         {
-            DAOGroup daoGroup = new DAOGroup(ConnectionString);
-            return daoGroup;
+            if (DAOgroup == null)
+            {
+                DAOgroup = new DAOGroup(connectionString);
+            }
+            return DAOgroup;
         }
 
-        public override IDAO<Result> GetDaoResult()
+        public override DAOResult GetDAOResult()
         {
-            DAOResult daoResult = new DAOResult(ConnectionString);
-            return daoResult;
+            if (DAOresult == null)
+            {
+                DAOresult = new DAOResult(connectionString);
+            }
+            return DAOresult;
         }
 
-        public override IDAO<Timetable> GetDaoExam()
+        public override DAOStudent GetDAOStudent()
         {
-            DAOTimetable daoExam = new DAOTimetable(ConnectionString);
-            return daoExam;
+            if (DAOstudent == null)
+            {
+                DAOstudent = new DAOStudent(connectionString);
+            }
+            return DAOstudent;
         }
 
-        public override IDAO<Subject> GetDaoSubject()
+        public override DAOSubject GetDAOSubject()
         {
-            DAOSubject daoSubject = new DAOSubject(ConnectionString);
-            return daoSubject;
+            if (DAOsubject == null)
+            {
+                DAOsubject = new DAOSubject(connectionString);
+            }
+            return DAOsubject;
         }
     }
 }
