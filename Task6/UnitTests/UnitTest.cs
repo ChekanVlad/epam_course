@@ -1,10 +1,9 @@
-﻿using System;
+﻿using DAOClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ORM;
-using DAOClasses;
-using MySql.Data.MySqlClient;
-using System.Configuration;
+using System;
 using System.Collections.Generic;
+using XLS;
 
 namespace UnitTests
 {
@@ -23,12 +22,12 @@ namespace UnitTests
             DAOSubject subject = factory.GetDAOSubject();
             Subject testSubject = new Subject("TestSubject");
             subject.Create(testSubject);
-            Subject readedSubject = subject.Read(subject.ReadAll()[subject.ReadAll().Count-1].Id);
+            Subject readedSubject = subject.Read(subject.ReadAll()[subject.ReadAll().Count - 1].Id);
             Assert.IsTrue(testSubject.Equals(readedSubject));
-            
+
             Subject newSubject = new Subject("UpdatedSubject");
-            subject.Update(newSubject, subject.ReadAll()[subject.ReadAll().Count-1].Id);
-            Subject updatedSubject = subject.Read(subject.ReadAll()[subject.ReadAll().Count-1].Id);
+            subject.Update(newSubject, subject.ReadAll()[subject.ReadAll().Count - 1].Id);
+            Subject updatedSubject = subject.Read(subject.ReadAll()[subject.ReadAll().Count - 1].Id);
             Assert.IsTrue(newSubject.Equals(updatedSubject));
 
             subject.Delete(subject.ReadAll()[subject.ReadAll().Count - 1].Id);
@@ -47,10 +46,10 @@ namespace UnitTests
             DAOStudent student = factory.GetDAOStudent();
             DAOExam exam = factory.GetDAOExam();
             DAOResult result = factory.GetDAOResult();
-            string[] subgroupsNames = { "ИТ", "ИП", "ЭС", "ЭФ", "ЭП"};
-            string[] subjectsNames = { "Математика", "ООП", "АОСКГ", "Компьютерные сети", 
+            string[] subgroupsNames = { "ИТ", "ИП", "ЭС", "ЭФ", "ЭП" };
+            string[] subjectsNames = { "Математика", "ООП", "АОСКГ", "Компьютерные сети",
                 "Философия", "Политология", "История", "Нейронные сети", "ВСРПП" };
-            string[] tables = { "groups","subjects","students","exams","results"};
+            string[] tables = { "groups", "subjects", "students", "exams", "results" };
             string[] names = { "First","Second","Third","Fourth","Fifth","Sixth","Seventh",
                         "Eighth","Ninth","Tenth","Eleventh","Twelfth","Thirteenth","Fourteenth","Fifteenth"};
 
@@ -59,18 +58,18 @@ namespace UnitTests
                 subgroup.Create(new Subgroup(subgroupsNames[i]));
             }
 
-            for(int i = 0; i < subjectsNames.Length; i++)
+            for (int i = 0; i < subjectsNames.Length; i++)
             {
                 subject.Create(new Subject(subjectsNames[i]));
             }
 
             for (int k = 0; k < subgroupsNames.Length; k++)
             {
-                for(int i = 0; i < 15; i++)
+                for (int i = 0; i < 15; i++)
                 {
                     string name = names[random.Next(names.Length)] + random.Next(100);
                     string gender = random.NextDouble() > 0.5 ? "male" : "female";
-                    student.Create(new Student(name, k+1, gender,
+                    student.Create(new Student(name, k + 1, gender,
                         new DateTime(random.Next(1998, 2000), random.Next(1, 12), random.Next(1, 28))));
                 }
             }
@@ -86,14 +85,25 @@ namespace UnitTests
 
             List<Student> students = student.ReadAll();
             List<Exam> exams = exam.ReadAll();
-            for(int i = 0; i < students.Count; i++)
+            for (int i = 0; i < students.Count; i++)
             {
-                for(int k = 0; k < exams.Count; k++)
+                for (int k = 0; k < exams.Count; k++)
                 {
-                    if(students[i].GroupId == exams[k].GroupId)
-                    result.Create(new Result(students[i].Id, exams[k].Id, random.Next(1,11)));
+                    if (students[i].GroupId == exams[k].GroupId)
+                        result.Create(new Result(students[i].Id, exams[k].Id, random.Next(1, 11)));
                 }
             }
+        }
+
+        /// <summary>
+        /// Xls test
+        /// </summary>
+        [TestMethod]
+        public void XlsTest()
+        {
+            GroupSessionResult sres = new GroupSessionResult(factory);
+            var results = sres.GetResult("ИТ");
+            sres.WriteToExcel(@"E:\SD-23\3k\labs_oop_repos_xota6\epam_course\Task6\", "xlsfile", results);
         }
     }
 }

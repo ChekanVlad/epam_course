@@ -69,6 +69,10 @@
       <Project>{ac1eff0d-0b45-4026-8794-469185e6d6ff}</Project>
       <Name>ORM</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XLS\XLS.csproj">
+      <Project>{d59aabb6-6d68-4264-9e83-8cd6883d1d82}</Project>
+      <Name>XLS</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
