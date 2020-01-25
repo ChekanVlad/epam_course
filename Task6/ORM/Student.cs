@@ -30,5 +30,25 @@ namespace ORM
             Gender = gender;
             BirthDate = birthDate;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            Student student = obj as Student;
+            if (student == null)
+            {
+                return false;
+            }
+
+            return Fio == student.Fio && GroupId == student.GroupId && Gender == student.Gender && BirthDate == student.BirthDate;
+        }
+
+        public override int GetHashCode()
+        {
+            return 2 * Fio.Length + 222 * GroupId + 17 * Gender.Length + 6 * BirthDate.Year;
+        }
     }
 }

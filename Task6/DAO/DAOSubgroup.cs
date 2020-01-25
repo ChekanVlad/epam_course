@@ -7,9 +7,9 @@ using ORM;
 
 namespace DAOClasses
 {
-    public class DAOGroup : DAO<Group>
+    public class DAOSubgroup : DAO<Subgroup>
     {
-        public DAOGroup(string connectionString) : base(connectionString)
+        public DAOSubgroup(string connectionString) : base(connectionString)
         {
         }
     }

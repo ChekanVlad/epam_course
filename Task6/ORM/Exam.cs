@@ -28,5 +28,27 @@ namespace ORM
             SubjectId = subjectId;
             SubjectType = subjectType;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            Exam exam = obj as Exam;
+            if (exam == null)
+            {
+                return false;
+            }
+
+            return Date == exam.Date && GroupId == exam.GroupId && SubjectId == exam.SubjectId && SubjectType == exam.SubjectType;
+        }
+
+        public override int GetHashCode()
+        {
+            return 2 * Date.Year + 222 * GroupId + 17 * SubjectId;
+        }
+
     }
 }
+

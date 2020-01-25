@@ -8,7 +8,7 @@ namespace DAOClasses
 {
     public abstract class Factory
     {
-        public abstract DAOGroup GetDAOGroup();
+        public abstract DAOSubgroup GetDAOSubgroup();
         public abstract DAOSubject GetDAOSubject();
         public abstract DAOStudent GetDAOStudent();
         public abstract DAOExam GetDAOExam();
@@ -18,7 +18,7 @@ namespace DAOClasses
     public class DAOFactory : Factory
     {
         private static DAOFactory instance;
-        private static DAOGroup DAOgroup;
+        private static DAOSubgroup DAOsubgroup;
         private static DAOSubject DAOsubject;
         private static DAOStudent DAOstudent;
         private static DAOExam DAOexam;
@@ -48,13 +48,13 @@ namespace DAOClasses
             return DAOexam;
         }
 
-        public override DAOGroup GetDAOGroup()
+        public override DAOSubgroup GetDAOSubgroup()
         {
-            if (DAOgroup == null)
+            if (DAOsubgroup == null)
             {
-                DAOgroup = new DAOGroup(connectionString);
+                DAOsubgroup = new DAOSubgroup(connectionString);
             }
-            return DAOgroup;
+            return DAOsubgroup;
         }
 
         public override DAOResult GetDAOResult()

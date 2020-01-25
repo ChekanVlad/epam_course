@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
-    public class Subject
+    public class Subgroup
     {
         public int Id { get; set; }
         public string Title { get; set; }
 
-        public Subject(int id, string title)
+        public Subgroup(int id, string title)
         {
             Id = id;
             Title = title;
         }
-        public Subject(string title)
+        public Subgroup(string title)
         {
             Title = title;
         }
@@ -27,13 +27,13 @@ namespace ORM
             {
                 return false;
             }
-            Subject subject = obj as Subject;
-            if (subject == null)
+            Subgroup subgroup = obj as Subgroup;
+            if (subgroup == null)
             {
                 return false;
             }
 
-            return Title == subject.Title;
+            return Title == subgroup.Title;
         }
 
         public override int GetHashCode()
