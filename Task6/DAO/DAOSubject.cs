@@ -7,6 +7,9 @@ using ORM;
 
 namespace DAOClasses
 {
+    /// <summary>
+    /// DAO layer (Subject)
+    /// </summary>
     public class DAOSubject : DAO<Subject>
     {
         public DAOSubject(string connectionString) : base(connectionString)

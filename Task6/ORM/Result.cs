@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
+    /// <summary>
+    /// Result class
+    /// </summary>
     public class Result
     {
         public int Id { get; set; }
@@ -26,7 +29,11 @@ namespace ORM
             ExamId = examId;
             Mark = mark;
         }
-
+        /// <summary>
+        /// Equals method
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -42,6 +49,10 @@ namespace ORM
             return StudentId == result.StudentId && ExamId == result.ExamId && Mark == result.Mark;
         }
 
+        /// <summary>
+        /// GetHashCode method
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return 2 * StudentId + 222 * ExamId + 17 * (int)Mark;

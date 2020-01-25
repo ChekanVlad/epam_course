@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
+    /// <summary>
+    /// Subject class
+    /// </summary>
     public class Subject
     {
         public int Id { get; set; }
@@ -21,6 +24,11 @@ namespace ORM
             Title = title;
         }
 
+        /// <summary>
+        /// Equals method
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -36,6 +44,10 @@ namespace ORM
             return Title == subject.Title;
         }
 
+        /// <summary>
+        /// GetHashCode method
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return 22 * Title.Length;

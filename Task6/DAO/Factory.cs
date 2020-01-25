@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DAOClasses
 {
+    /// <summary>
+    /// Factory
+    /// </summary>
     public abstract class Factory
     {
         public abstract DAOSubgroup GetDAOSubgroup();
@@ -15,6 +18,9 @@ namespace DAOClasses
         public abstract DAOResult GetDAOResult();
     }
 
+    /// <summary>
+    /// Factory realisation
+    /// </summary>
     public class DAOFactory : Factory
     {
         private static DAOFactory instance;
@@ -29,6 +35,11 @@ namespace DAOClasses
 
         }
 
+        /// <summary>
+        /// Singleton
+        /// </summary>
+        /// <param name="connString"></param>
+        /// <returns></returns>
         public static DAOFactory GetInstance(string connString)
         {
             if(instance == null)
@@ -39,6 +50,10 @@ namespace DAOClasses
             return instance;
         }
 
+        /// <summary>
+        /// Creating DAO layer (exam)
+        /// </summary>
+        /// <returns></returns>
         public override DAOExam GetDAOExam()
         {
             if(DAOexam == null)
@@ -48,6 +63,10 @@ namespace DAOClasses
             return DAOexam;
         }
 
+        /// <summary>
+        /// Creating DAO layer (Subgroup)
+        /// </summary>
+        /// <returns></returns>
         public override DAOSubgroup GetDAOSubgroup()
         {
             if (DAOsubgroup == null)
@@ -57,6 +76,10 @@ namespace DAOClasses
             return DAOsubgroup;
         }
 
+        /// <summary>
+        /// Creating DAO layer (Result)
+        /// </summary>
+        /// <returns></returns>
         public override DAOResult GetDAOResult()
         {
             if (DAOresult == null)
@@ -66,6 +89,10 @@ namespace DAOClasses
             return DAOresult;
         }
 
+        /// <summary>
+        /// Creating DAO layer (Student)
+        /// </summary>
+        /// <returns></returns>
         public override DAOStudent GetDAOStudent()
         {
             if (DAOstudent == null)
@@ -75,6 +102,10 @@ namespace DAOClasses
             return DAOstudent;
         }
 
+        /// <summary>
+        /// Creating DAO layer (Subject)
+        /// </summary>
+        /// <returns></returns>
         public override DAOSubject GetDAOSubject()
         {
             if (DAOsubject == null)

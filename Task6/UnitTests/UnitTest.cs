@@ -14,13 +14,31 @@ namespace UnitTests
         private static string connectionString = "server=localhost;user=root;database=task6;password=G8129307csgo;";
         private DAOFactory factory = DAOFactory.GetInstance(connectionString);
         private Random random = new Random();
+        /// <summary>
+        /// Test
+        /// </summary>
         [TestMethod]
-        public void TestMethod1()
+        public void Create_Read_Update_Test()
         {
             DAOSubject subject = factory.GetDAOSubject();
-            subject.Create(new Subject("Hello2"));
+            Subject testSubject = new Subject("TestSubject");
+            subject.Create(testSubject);
+            Subject readedSubject = subject.Read(subject.ReadAll()[subject.ReadAll().Count-1].Id);
+            Assert.IsTrue(testSubject.Equals(readedSubject));
+            
+            Subject newSubject = new Subject("UpdatedSubject");
+            subject.Update(newSubject, subject.ReadAll()[subject.ReadAll().Count-1].Id);
+            Subject updatedSubject = subject.Read(subject.ReadAll()[subject.ReadAll().Count-1].Id);
+            Assert.IsTrue(newSubject.Equals(updatedSubject));
+
+            subject.Delete(subject.ReadAll()[subject.ReadAll().Count - 1].Id);
+            readedSubject = subject.Read(subject.ReadAll()[subject.ReadAll().Count - 1].Id);
+            Assert.IsFalse(newSubject.Equals(readedSubject));
         }
 
+        /// <summary>
+        /// Insert method
+        /// </summary>
         [TestMethod]
         public void Insert()
         {

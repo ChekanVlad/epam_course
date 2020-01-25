@@ -5,7 +5,11 @@ using System.Reflection;
 
 namespace DAOClasses
 {
-    public abstract class DAO<T> : IDAO<T>
+    /// <summary>
+    /// DAO class
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public abstract class DAO<T>
     {
         private string connectionString;
 
@@ -14,6 +18,10 @@ namespace DAOClasses
             this.connectionString = connectionString;
         }
 
+        /// <summary>
+        /// Create method
+        /// </summary>
+        /// <param name="t"></param>
         public void Create(T t)
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -49,10 +57,13 @@ namespace DAOClasses
                 command.CommandText = query;
                 command.ExecuteNonQuery();
 
-                //return (answer > 0) ? true : false;
             }
         }
 
+        /// <summary>
+        /// Delete method
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(int id)
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -69,10 +80,14 @@ namespace DAOClasses
 
                 command.ExecuteNonQuery();
 
-                //return (answer > 0) ? true : false;
             }
         }
 
+        /// <summary>
+        /// Read method
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public T Read(int id)
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -114,6 +129,11 @@ namespace DAOClasses
                 }
             }
         }
+
+        /// <summary>
+        /// ReadAll method
+        /// </summary>
+        /// <returns></returns>
         public List<T> ReadAll()
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -190,7 +210,6 @@ namespace DAOClasses
 
                 command.ExecuteNonQuery();
 
-                //return (answer > 0) ? true : false;
             }
         }
 

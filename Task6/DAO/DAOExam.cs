@@ -7,6 +7,9 @@ using ORM;
 
 namespace DAOClasses
 {
+    /// <summary>
+    /// DAO layer (Exam)
+    /// </summary>
     public class DAOExam : DAO<Exam>
     {
         public DAOExam(string connectionString) : base(connectionString)

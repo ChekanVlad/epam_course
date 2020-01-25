@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
+    /// <summary>
+    /// Subgroup class
+    /// </summary>
     public class Subgroup
     {
         public int Id { get; set; }
@@ -20,7 +23,11 @@ namespace ORM
         {
             Title = title;
         }
-
+        /// <summary>
+        /// Equals method
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -36,6 +43,10 @@ namespace ORM
             return Title == subgroup.Title;
         }
 
+        /// <summary>
+        /// GetHashCode method
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return 22 * Title.Length;
