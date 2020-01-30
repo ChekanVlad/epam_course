@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DAO.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,6 +44,18 @@
     </Reference>
     <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Shaman.DbLinq, Version=1.0.0.0, Culture=neutral, PublicKeyToken=61e015a67077348b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Shaman.DbLinq.1.0.1.6\lib\net46\Shaman.DbLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="Shaman.Reflection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=18bc04d2eb1e1518, processorArchitecture=MSIL">
+      <HintPath>..\packages\Shaman.Reflection.1.0.0.21\lib\net45\Shaman.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="Shaman.System.Linq.Expressions.Interpreter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=712f6b6deeaf4702, processorArchitecture=MSIL">
+      <HintPath>..\packages\Shaman.System.Linq.Expressions.Interpreter.1.0.1.2\lib\net46\Shaman.System.Linq.Expressions.Interpreter.dll</HintPath>
+    </Reference>
+    <Reference Include="Shaman.ValueString, Version=1.0.0.0, Culture=neutral, PublicKeyToken=18bc04d2eb1e1518, processorArchitecture=MSIL">
+      <HintPath>..\packages\Shaman.ValueString.1.0.2.29\lib\net46\Shaman.ValueString.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel" />
@@ -66,13 +79,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO.cs" />
-    <Compile Include="DAOExam.cs" />
-    <Compile Include="DAOExamenator.cs" />
-    <Compile Include="DAOResult.cs" />
-    <Compile Include="DAOSpecialization.cs" />
-    <Compile Include="DAOStudent.cs" />
-    <Compile Include="DAOSubgroup.cs" />
-    <Compile Include="DAOSubject.cs" />
+    <Compile Include="IDAO.cs" />
+    <Compile Include="Layers\DAOExam.cs" />
+    <Compile Include="Layers\DAOExaminator.cs" />
+    <Compile Include="Layers\DAOResult.cs" />
+    <Compile Include="Layers\DAOSpecialization.cs" />
+    <Compile Include="Layers\DAOStudent.cs" />
+    <Compile Include="Layers\DAOSubgroup.cs" />
+    <Compile Include="Layers\DAOSubject.cs" />
+    <Compile Include="Factory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

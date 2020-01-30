@@ -10,7 +10,8 @@ namespace ORM
     /// <summary>
     /// Exam class
     /// </summary>
-    public class Exam
+    [Table(Name = "Exams")]
+    public class Exam : ITable
     {
         [Column(IsPrimaryKey=true, IsDbGenerated = true)]
         public int Id { get; set; }
@@ -27,25 +28,27 @@ namespace ORM
         [Column(Name = "SubjectType")]
         public string SubjectType { get; set; }
 
-        [Column(Name = "ExamenatorId")]
-        public int ExamenatorId { get; set; }
+        [Column(Name = "ExaminatorId")]
+        public int ExaminatorId { get; set; }
 
-        public Exam(int id, DateTime date, int groupId, int subjectId, string subjectType, int examenatorId)
+        public Exam() { }
+
+        public Exam(int id, DateTime date, int groupId, int subjectId, string subjectType, int examinatorId)
         {
             Id = id;
             Date = date;
             GroupId = groupId;
             SubjectId = subjectId;
             SubjectType = subjectType;
-            ExamenatorId = examenatorId;
+            ExaminatorId = examinatorId;
         }
-        public Exam(DateTime date, int groupId, int subjectId, string subjectType, int examenatorId)
+        public Exam(DateTime date, int groupId, int subjectId, string subjectType, int examinatorId)
         {
             Date = date;
             GroupId = groupId;
             SubjectId = subjectId;
             SubjectType = subjectType;
-            ExamenatorId = examenatorId;
+            ExaminatorId = examinatorId;
         }
 
         /// <summary>
@@ -65,7 +68,7 @@ namespace ORM
                 return false;
             }
 
-            return Date == exam.Date && GroupId == exam.GroupId && SubjectId == exam.SubjectId && SubjectType == exam.SubjectType && ExamenatorId == exam.ExamenatorId;
+            return Date == exam.Date && GroupId == exam.GroupId && SubjectId == exam.SubjectId && SubjectType == exam.SubjectType && ExaminatorId == exam.ExaminatorId;
         }
 
         /// <summary>
@@ -74,7 +77,7 @@ namespace ORM
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return 2 * Date.Year + 222 * GroupId + 17 * SubjectId + 16 * ExamenatorId;
+            return 2 * Date.Year + 222 * GroupId + 17 * SubjectId + 16 * ExaminatorId;
         }
 
     }

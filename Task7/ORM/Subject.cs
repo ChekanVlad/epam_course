@@ -10,13 +10,16 @@ namespace ORM
     /// <summary>
     /// Subject class
     /// </summary>
-    public class Subject
+    [Table(Name = "Subjects")]
+    public class Subject : ITable
     {
         [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id { get; set; }
 
         [Column(Name = "Title")]
         public string Title { get; set; }
+
+        public Subject() { }
 
         public Subject(int id, string title)
         {

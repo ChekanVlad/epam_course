@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAOClasses
+namespace ORM
 {
-    class DAOSpecialization
+    public interface ITable
     {
+        int Id { get; set; }
     }
 }

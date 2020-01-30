@@ -10,7 +10,8 @@ namespace ORM
     /// <summary>
     /// Result class
     /// </summary>
-    public class Result
+    [Table(Name = "Results")]
+    public class Result : ITable
     {
         [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id { get; set; }
@@ -23,6 +24,8 @@ namespace ORM
 
         [Column(Name = "Mark")]
         public double Mark { get; set; }
+
+        public Result() { }
 
         public Result(int id, int studentId, int examId, double mark)
         {

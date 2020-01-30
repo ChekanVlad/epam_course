@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace XLS
 {
-    public class Class1
+    public class AverageSpecialization
     {
+        public string SpecializationTitle { get; set; }
+        public double AverageMark { get; set; }
     }
 }

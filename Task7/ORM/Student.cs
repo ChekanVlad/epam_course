@@ -10,7 +10,8 @@ namespace ORM
     /// <summary>
     /// Student class
     /// </summary>
-    public class Student
+    [Table(Name = "Students")]
+    public class Student : ITable
     {
         [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id { get; set; }
@@ -26,6 +27,8 @@ namespace ORM
 
         [Column(Name = "BirthDate")]
         public DateTime BirthDate { get; set; }
+
+        public Student() { }
 
         public Student(int id, string fio, int groupId, string gender, DateTime birthDate)
         {

@@ -10,7 +10,8 @@ namespace ORM
     /// <summary>
     /// Examenator class
     /// </summary>
-    public class Examenator
+    [Table(Name = "Examinators")]
+    public class Examinator : ITable
     {
         [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id { get; set; }
@@ -18,13 +19,15 @@ namespace ORM
         [Column(Name = "Fio")]
         public string Fio { get; set; }
 
-        public Examenator(int id, string fio)
+        public Examinator() { }
+
+        public Examinator(int id, string fio)
         {
             Id = id;
             Fio = fio;
         }
 
-        public Examenator(string fio)
+        public Examinator(string fio)
         {
             Fio = fio;
         }
@@ -39,13 +42,13 @@ namespace ORM
             {
                 return false;
             }
-            Examenator examenator = obj as Examenator;
-            if (examenator == null)
+            Examinator examinator = obj as Examinator;
+            if (examinator == null)
             {
                 return false;
             }
 
-            return Fio == examenator.Fio;
+            return Fio == examinator.Fio;
         }
 
         /// <summary>

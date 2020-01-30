@@ -10,7 +10,8 @@ namespace ORM
     /// <summary>
     /// Subgroup class
     /// </summary>
-    public class Subgroup
+    [Table(Name = "Subgroups")]
+    public class Subgroup : ITable
     {
         [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id { get; set; }
@@ -20,6 +21,8 @@ namespace ORM
 
         [Column(Name = "SpecializationId")]
         public int SpecializationId { get; set; }
+
+        public Subgroup() { }
 
         public Subgroup(int id, string title, int specializationId)
         {

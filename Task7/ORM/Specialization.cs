@@ -10,13 +10,16 @@ namespace ORM
     /// <summary>
     /// Specialization class
     /// </summary>
-    public class Specialization
+    [Table(Name = "Specializations")]
+    public class Specialization : ITable
     {
         [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id { get; set; }
 
         [Column(Name = "Title")]
         public string Title { get; set; }
+
+        public Specialization() { }
 
         public Specialization(int id, string title)
         {
